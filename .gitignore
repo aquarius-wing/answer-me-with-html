@@ -18,5 +18,8 @@ docs/social/
 docs/demo/*.mp4
 docs/demo/*.gif
 
+# Local scratch output (samples, screenshots, reports)
+.tmp/
+
 # Website build output (npm run site); GitHub Pages builds it in CI.
 site/dist/
