@@ -8459,7 +8459,7 @@ Closed -> [*]                  \u2190 [*] on the right is the final pseudo-state
 \`\`\`
 - One transition per line. A state is a rounded rectangle; the initial pseudo-state is a filled dot, the final one a ringed dot.
 - The text on each side of \`->\` is the state's name; later lines can refer to it by that name alone. A line without an arrow declares a state (with a change marker).
-- A Mermaid \`stateDiagram-v2\` block is an error that shows the line to write: lines such as \`Idle --> Open\` are rejected with their line number.
+- Without a Mermaid header, Mermaid lines such as \`Idle --> Open\` are errors that show the line to write, with their line number.
 - Composite states, parallel regions, entry and exit actions, and history pseudo-states are not drawn.
 - Change markers show what a plan adds, removes and changes. A line can start with + (added), - (removed) or ~ (changed), followed by a space:
 \`\`\`state LR
@@ -31765,6 +31765,8 @@ function nativeSvg(result, text2, { ui: ui2, dir, warn }) {
 }
 var mermaidStyles = (html) => html.includes('class="am-diagram am-mermaid"') ? `${MERMAID_CSS}
 ` : "";
+var mermaidHelpNote = (name2) => DIAGRAM_BLOCKS.has(name2) ? `
+- A block whose first line is a Mermaid header (such as ${name2 === "state" ? "stateDiagram-v2" : "flowchart LR or sequenceDiagram"}) is Mermaid: Pele draws it, without change markers or a steps link. See am help mermaid.` : "";
 var mermaid = {
   name: "mermaid",
   summary: "Any Mermaid diagram, drawn by Pele",
@@ -37542,7 +37544,7 @@ function cmdHelp(name2, { print, fail }) {
   }
   print(`${comp.name} \u2014 ${comp.summary}
 
-${comp.syntax}
+${comp.syntax}${mermaidHelpNote(comp.name)}
 
 Example:
 ${comp.specimen ?? comp.example}`);

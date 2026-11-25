@@ -153,6 +153,7 @@ Write a component as a fenced code block (```` ```flow ```` … ```` ``` ````); 
 | A data model: entities, their columns and the relations between them | `er [LR]` | entity at column 0, indented `name [type] [PK\|FK\|UK]` fields, `user_id FK -> User`, `User 1--* Order: places` |
 | Classes, code interfaces and their relationships | `class [LR]` | declare `class User` and `interface Store`, indent `+id: string` or `+save(): void`, then `User ..> Store: uses` |
 | HTTP/RPC contracts or one requirement changing several endpoints | `api` | `GET /users/{id}` or `RPC users.UserService/GetUser`, sections `path`, `query`, `headers`, `request [Type]`, `response STATUS [Type]`, indented `id string required` or `email string optional`; multiple endpoints per block; `+` / `-` / `~` markers on endpoints, sections or fields |
+| Mermaid diagrams: Mermaid text you already have, or a diagram type with no component here | ```` ```mermaid ````, rendered by Pele (a diagram block that starts with a Mermaid header too) | any Mermaid diagram type, e.g. `stateDiagram-v2`, `flowchart LR`, `gantt`; no change markers and no `steps` link |
 | Messages between actors over time | `sequence [num]` | `A -> B: request`, `B --> A: response`, `note A, B: note`, `== phase ==` |
 | Hierarchy / directories / taxonomy | `tree [list]` | indentation for levels, `label \| description`, `` `id` label `` |
 | History / phases | `timeline [v]` | `time \| title \| description`, `*` highlights |

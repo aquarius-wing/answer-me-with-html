@@ -11,6 +11,7 @@ import { parseDoc, ParseError, DraftErrors, CHOICES, VOICES, frontmatterValue } 
 import { lintDoc, formatWarning } from './lint/ste.js';
 import { resolveLanguage } from './language.js';
 import { COMPONENTS } from './components/index.js';
+import { mermaidHelpNote } from './components/mermaid.js';
 import { themeNames, getTheme, loadThemes } from './themes/registry.js';
 import { readThemeFile } from './themes/user.js';
 import { cmdThemeMarket, THEME_MARKET_USAGE } from './theme-market.js';
@@ -1245,7 +1246,7 @@ function cmdHelp(name, { print, fail }) {
     fail(`✗ No component named "${name}". Available: ${[...COMPONENTS.keys()].join(', ')}, html, svg, format, code, image, video, export, patch, theme`);
     return 2;
   }
-  print(`${comp.name} — ${comp.summary}\n\n${comp.syntax}\n\nExample:\n${comp.specimen ?? comp.example}`);
+  print(`${comp.name} — ${comp.summary}\n\n${comp.syntax}${mermaidHelpNote(comp.name)}\n\nExample:\n${comp.specimen ?? comp.example}`);
   return 0;
 }
 
