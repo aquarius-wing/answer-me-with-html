@@ -8,6 +8,7 @@ import { lintDoc } from '../lint/ste.js';
 import { esc } from '../svg/text.js';
 import { VERSION, VIDEO_JS, VIDEO_EXPORT_JS, VIDEO_MUX_JS } from '../assets.js';
 import { rootTag, audioTag, sourceTag } from '../page.js';
+import { mermaidStyles } from '../components/mermaid.js';
 import { parseVideo, buildTimeline, estimateSeconds, allBeats } from './script.js';
 import { CHOICES, ParseError, raiseAll, applyOverrides } from '../parse.js';
 import { cspMeta } from '../csp.js';
@@ -147,7 +148,7 @@ ${cspMeta([MUX_SCRIPT, EXPORT_SCRIPT, PLAYER_SCRIPT])}
 <title>${esc(meta.title || 'Answer me with HTML')}</title>
 <style>
 ${videoCss(embedded, { diff: scenesHtml.includes('class="am-codeblock am-codeblock--diff"'), delta: hasDelta(scenesHtml), rtl: language.dir === 'rtl', chart: hasChart(scenesHtml) })}
-</style>
+${mermaidStyles(scenesHtml)}</style>
 </head>
 <body>
 <div class="amv-viewport">

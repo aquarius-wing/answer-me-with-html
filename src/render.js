@@ -20,6 +20,7 @@ import { isolateLtrRuns } from './bidi.js';
 import { hasMath } from './math.js';
 import { cspMeta } from './csp.js';
 import { renderPanel } from './steps-panel.js';
+import { routeMermaid, mermaidStyles } from './components/mermaid.js';
 
 
 export class RenderError extends Error {
@@ -186,7 +187,7 @@ function renderFence(block, ctx) {
     }
     return text;
   }
-  const comp = COMPONENTS.get(lang);
+  const comp = routeMermaid(COMPONENTS.get(lang), text); // a Mermaid text in a diagram block goes to Pele
   if (!comp) return codeBlock(block, ctx);
   if (comp.pageOnly && ctx.video) throw new RenderError(`${lang} works on a page only; ${comp.pageOnlyReason ?? 'a video cannot show it'}`, { line, component: lang, example: comp.example });
   ctx.stats.components[lang] = (ctx.stats.components[lang] ?? 0) + 1;
@@ -366,7 +367,7 @@ ${cspMeta([script], { live: true })}
 <title>${esc(meta.title || 'Answer me with HTML')}</title>
 <style>
 ${pageCss(embedded, { diff: body.includes('class="am-codeblock am-codeblock--diff"'), delta: hasDelta(body), rtl: language.dir === 'rtl', math: hasMath(body), chart: hasChart(body), steps: hasSteps(body), table: interactiveTable, update: Boolean(update), closeAfter, scale })}
-</style>
+${mermaidStyles(body)}</style>
 </head>
 <body>
 <div class="am-toolbar"${rootCarrierAttrs(root)}>

@@ -9,6 +9,7 @@ const isCode = (b) => b.type === 'fence' && !COMPONENTS.has(b.lang) && !RAW_LANG
 // The components that draw a diagram, and the ones of them that steps can link so far.
 const DIAGRAMS = new Set(['flow', 'state', 'tree', 'er', 'class', 'sequence', 'timeline', 'chart']);
 const LINKED = ['flow', 'state', 'tree'];
+DIAGRAMS.add('mermaid'); // never linked: pickBlocks says so
 
 const article = (word) => (/^[aeiou]/.test(word) ? 'an' : 'a');
 // The labels a reader can type: one with a colon never matches an item, because the first colon ends the item.

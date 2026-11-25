@@ -14,10 +14,12 @@ import api from './api.js';
 import ask from './ask.js';
 import chart from './chart.js';
 import steps from './steps.js';
+import mermaid from './mermaid.js';
 
 export { ComponentError } from './error.js';
 
 const ALL = [callout, kv, timeline, annot, tree, limits, chart, sequence, flow, state, er, classDiagram, api, ask, steps];
 
 export const COMPONENTS = new Map(ALL.map((c) => [c.name, c]));
+COMPONENTS.set(mermaid.name, mermaid);
 export const RAW_LANGS = new Set(['html', 'svg']);

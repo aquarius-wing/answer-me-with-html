@@ -1,0 +1,41 @@
+/* Mermaid diagrams (src/components/mermaid.js), drawn by Pele. Only a page with one carries this file. Pele paints with its own
+   variables (https://pele.run/theming); each one reads the theme token am's diagrams read, so a theme or mode switch recolors the
+   drawing with no new render. Series colors are --series-1 to --series-8 when a theme sets them, else the palette of chart.css. */
+html {
+  --am-pl-1: #4e79a7; --am-pl-2: #f28e2b; --am-pl-3: #e15759; --am-pl-4: #76b7b2; --am-pl-5: #59a14f; --am-pl-6: #b07aa1; --am-pl-7: #edc948; --am-pl-8: #9c755f;
+}
+html[data-mode="dark"] {
+  --am-pl-1: #7aa6d6; --am-pl-2: #f5a55a; --am-pl-3: #ef7f80; --am-pl-4: #8fd0cb; --am-pl-5: #7cc472; --am-pl-6: #c99bbd; --am-pl-7: #f1d479; --am-pl-8: #bd9a85;
+}
+@media (prefers-color-scheme: dark) {
+  html[data-mode="auto"] {
+    --am-pl-1: #7aa6d6; --am-pl-2: #f5a55a; --am-pl-3: #ef7f80; --am-pl-4: #8fd0cb; --am-pl-5: #7cc472; --am-pl-6: #c99bbd; --am-pl-7: #f1d479; --am-pl-8: #bd9a85;
+  }
+}
+.am-diagram .pele {
+  --pele-bg: var(--paper, #ffffff);
+  --pele-fg: var(--node-text, var(--ink, #16181d));
+  --pele-muted: var(--ink-2, #4b5260);
+  --pele-line: var(--edge-color, var(--ink-2, #4b5260));
+  --pele-surface: var(--node-fill, var(--paper, #ffffff));
+  --pele-surface-alt: var(--cluster-fill, var(--fill, #f3f5f8));
+  --pele-border: var(--node-stroke, var(--line, #1d2026));
+  --pele-accent: var(--accent, #1d5fbf);
+  --pele-font: var(--font-sans, sans-serif);
+  --pele-font-mono: var(--font-mono, monospace);
+  --pele-radius: var(--node-radius, 3px);
+  --pele-series-1: var(--series-1, var(--am-pl-1));
+  --pele-series-2: var(--series-2, var(--am-pl-2));
+  --pele-series-3: var(--series-3, var(--am-pl-3));
+  --pele-series-4: var(--series-4, var(--am-pl-4));
+  --pele-series-5: var(--series-5, var(--am-pl-5));
+  --pele-series-6: var(--series-6, var(--am-pl-6));
+  --pele-series-7: var(--series-7, var(--am-pl-7));
+  --pele-series-8: var(--series-8, var(--am-pl-8));
+}
+/* Boxes have the line weight, corner and shadow of am's own nodes. A style or classDef of the draft is inline and still wins. */
+.am-diagram .pele-node > :is(rect, polygon) { stroke-width: var(--node-width, var(--bw, 1.5px)); }
+.am-diagram .pele-node > rect:first-of-type { filter: var(--node-shadow, none); }
+.am-diagram .pele-state > rect { rx: var(--node-radius, 8px); }
+/* An edge label is accent text, as in am's diagrams; its text elements inherit the fill of this group. */
+.am-diagram .pele-edge-label { fill: var(--edge-label, var(--accent, #1d5fbf)); }
